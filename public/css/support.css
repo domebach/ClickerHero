@@ -1,0 +1,144 @@
+* {
+    color: #ffbe7d;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    margin: 0;
+}
+.bg-header {
+    background-color: #00406f;
+    text-align: center;
+    padding: 25px 0 25px 0;
+    margin: 0 auto 0 auto;
+}
+
+.svg {
+    height: 33px;
+}
+
+.btnReg {
+    background-color: #1462a4;
+    color: white;
+    text-shadow: none;
+    padding: 2px 10px;
+    margin: 0 5px 0 0;
+    border-radius: 5px;
+
+}
+
+.btnLog {
+    background-color: #1462a4;
+    color: white;
+    text-shadow: none;
+    padding: 2px 10px;
+    margin: 0 0 0 5px;
+    border-radius: 5px;
+}
+
+.globalW {
+    width: 90%;
+}
+
+.bg-base {
+    background-image: url("/images/support-bg.jpg");
+    background-size: cover;
+}
+
+.subtitle {
+    border-bottom: solid #00406f 3px;
+    padding: 4px 0 4px 0;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.tshadow {
+    text-shadow: none;
+    font-style: italic;
+}
+
+.faq {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 0 10px 0 25px;
+    margin: -3px 0 0 4px;
+}
+
+.frontText {
+    background-color: rgba(230,230,230,0.4);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.waller {
+    border-right: solid #00406f 3px;
+    padding: 2px 15px 0 15px;
+    margin-top: 5px;
+}
+
+.filler {
+    height: 46px;
+    background-color: #00406f;
+    text-align: center;
+    text-decoration: none;
+}
+
+.separate {
+    border-bottom: solid #00406f 3px;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+.basement {
+    border: solid #8f4203 5px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 24px rgba(0, 0, 0, 0.44);
+    max-width: 90%;
+    margin:  auto ;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.0);
+    color: #ffbe7d;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    opacity: 0.8;
+}
+
+.buttons {
+    max-height: 40px;
+}
+
+.borderDesign {
+    border: solid #404040 1px;
+    box-shadow: 1px 1px 2px rgba(186, 186, 186, 0.44);
+}
+
+.borderHeroes {
+    border: solid #702900 5px;
+    box-shadow: 1px 1px 2px rgba(186, 186, 186, 0.44);
+    border-radius: 20px;
+    background-image: url("/images/bg-img-basement.jpeg");
+    max-width: 35%;
+    min-width: 200px;
+}
+
+.imgShadow {
+    box-shadow: 0 0 5px 7px rgba(0, 0, 0, 0.8);
+}
+
+.base-img {
+    background-image: url("/images/bg-img-basement.jpeg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.fixedSize {
+    width: 299px;
+    height: 168px;
+}
+
+.register {
+    width: 60%;
+}
