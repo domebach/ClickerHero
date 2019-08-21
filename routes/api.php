@@ -13,18 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/clickers', function (Request $request) {
     return $request->user();
 });
-Route::get('clickers', 'ClickerController@getAll');
+    Route::get('clickers/get/{id}', 'ClickerController@getAllById');
 
-Route::post('clickers/create', 'ClickerController@create');
+    Route::post('clickers/create/{id}', 'ClickerController@create');
 
-Route::get('clickers/init', 'ClickerController@init');
+    Route::get('clickers/init/{id}', 'ClickerController@init');
 
-Route::post('clickers/{id}', 'ClickerController@update');
+    Route::post('clickers/{id}', 'ClickerController@update');
 
-Route::get('clickers/{id}', 'ClickerController@get');
+    Route::get('clickers/{id}', 'ClickerController@get');
 
+    Route::post('clickers/delete/{id}', 'ClickerController@delete');
 
-Route::post('clickers/delete/{id}', 'ClickerController@delete');

@@ -1,6 +1,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.0.4/math.js"></script>
 
-<html>
+<html lang="de-DE">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,15 +14,29 @@
         <link type="text/css" href="/css/support.css" rel="stylesheet">
 
     </head>
+    <body class="bg-gray-400">
+        <div class="globalW mx-auto flex items-center m-0 p-7">
+            <div class="w-1/3 p-2">
+                <p class="text-xs shadow-none text-black italic">Sponsored by </p>
+                <img class="svg" src="/images/logo.svg">
+            </div>
 
-    <body class="base-img">
-        <div>
-            <div id="app" class="basement">
-                <clickers></clickers>
+            <div class="w-1/3">
+
+            </div>
+
+            <div class="w-1/3 flex justify-end">
+                <a class="btnReg text-xl hover:text-white hover:bg-blue-700 hover:no-underline" href="/">Logout</a>
+            </div>
+        </div>
+
+        <div class="base-img">
+            <div id="app" class="basement" >
+                <clickers user_id="{{ $id }}"></clickers>
             </div>
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>
 
-    </body>
+    </bodybg-gray-400>
 </html>

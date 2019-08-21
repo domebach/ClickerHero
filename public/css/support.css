@@ -126,10 +126,10 @@ ul {
 
 .base-img {
     background-image: url("/images/bg-img-basement.jpeg");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    -webkit-background-size: 120% 110%;
+    -moz-background-size: 120% 110%;
+    -o-background-size: 120% 110%;
+    background-size: 120% 110%;
     padding-top: 30px;
     padding-bottom: 30px;
 }
@@ -142,3 +142,16 @@ ul {
 .register {
     width: 60%;
 }
+
+.alerts {
+    min-height: 85px;
+}
+
+.scroll {
+    height: 100px;
+}
+
+.wallerHead {
+    border-top: solid #702900 5px;
+}
+

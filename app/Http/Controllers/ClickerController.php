@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Clicker;
+use Illuminate\Support\Facades\Auth;
 
 class ClickerController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return view('index');
+        return view('index',compact('id'));
     }
 
-    public function create()
+    public function create($id)
     {
         $clicker = new Clicker();
+
+        $clicker->user_id = $id;
 
         $clicker->save();
         $clicker->refresh();
@@ -31,17 +36,26 @@ class ClickerController extends Controller
 
     public function get($id)
     {
-        return Clicker::find($id);
+        return response()->json(Clicker::find($id));
     }
 
-    public function getAll()
+    public function getAllById($id)
     {
-        return Clicker::select('id')->get()->pluck('id');
+
+        return response()->json(Clicker::select('id')->where('user_id', $id)->get()->pluck('id'));
+
+
     }
 
-    public function init()
+    public function init($id)
     {
-        return Clicker::latest('updated_at')->first();
+        $clicker = Clicker::where('user_id', $id)->latest('updated_at')->first();
+
+        if ($clicker) {
+            return response()->json($clicker);
+        }
+
+        return response()->json('');
     }
 
 

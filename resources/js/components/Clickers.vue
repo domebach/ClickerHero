@@ -45,50 +45,64 @@
         <div class="flex ">
             <div class="flex justify-start flex-col w-50">
                 <div class="flex justify-center items-center mt-2">
-                    <h2 class="flex w-50 text-xl text-orange-700 mb-0">Start a new Game:</h2>
-                    <button class="borderDesign buttons bg-orange-400 hover:bg-orange-700 text-white font-bold py-1 px-3 mr-1 rounded"
-                        @click="newGame">New</button>
+                    <h2 class="flex w-50 text-2xl text-orange-700 mb-0">Start a new Game:</h2>
+                    <button class="text-xl borderDesign buttons bg-orange-400 hover:bg-orange-700 text-white font-bold py-1 px-3 mr-1 rounded"
+                        @click="newGame(UserData.user_id)">New</button>
                 </div>
                 <div class="flex justify-center items-center mt-2">
-                    <h2 class="flex w-50 text-xl text-orange-700 mb-0">Save the current Game:</h2>
-                    <button class="borderDesign buttons bg-orange-400 hover:bg-orange-700 text-white font-bold py-1 px-3 rounded"
+                    <h2 class="flex w-50 text-2xl text-orange-700 mb-0">Save the current Game:</h2>
+                    <button class="text-xl borderDesign buttons bg-orange-400 hover:bg-orange-700 text-white font-bold py-1 px-3 rounded"
                         @click="save">Save</button>
                 </div>
             </div>
 
             <div class="flex justify-center w-50">
-                <ul>
-                    <li v-for="id in items" style="list-style: none;">
-                        <div class="flex justify-center items-center">
-                            <h2 class="flex w-50 text-xl text-orange-700 mr-2 my-2">Game-Id: {{ id }}</h2>
-                            <button class="borderDesign bg-orange-400 hover:bg-orange-700 text-white font-bold py-0.5 px-3 my-1 mx-2 rounded"
-                                    @click="load(id)">Load</button>
+                <div class="scroll overflow-y-auto w-full">
+                    <ul>
+                        <li v-for="id in items" style="list-style: none;">
+                            <div class="flex justify-center items-center mt-2">
+                                <h2 class="flex w-50 text-2xl text-orange-700 mr-2 mb-1">Game-Id: {{ id }}</h2>
+                                <button class="text-xl borderDesign bg-orange-400 hover:bg-orange-700 text-white font-bold py-0.5 px-3 my-1 mx-2 rounded"
+                                        @click="load(id)">Load</button>
 
-                            <button class="borderDesign bg-red-700 hover:bg-red-900 text-white font-bold py-0.5 px-2 my-1 rounded"
-                                    @click="deleteGame(id)">Delete</button>
-                        </div>
-                    </li>
-                </ul>
+                                <button class="text-xl borderDesign bg-red-700 hover:bg-red-900 text-white font-bold py-0.5 px-2 my-1 rounded"
+                                        @click="deleteGame(id)">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-
-        <div class="flex justify-center">
-            {{ message }}
+        <div class=" text-center py-4 lg:px-4 alerts" >
+            <div class="p-2 bg-green-500 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" v-show="bool_message" role="alert">
+                <span class="flex rounded-full bg-green-700 uppercase px-2 py-1 text-xs font-bold mr-3">Success</span>
+                <span class="font-semibold mr-2 text-left flex-auto">{{ message }}</span>
+                <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+            </div>
         </div>
 
-        <div class="w-full">
-            <a class="text-left text-xl no-underline text-orange-200 hover:text-orange-500" href="/">Startpage</a>
-            <a class="text-right text-xl no-underline text-orange-200 hover:text-orange-500" href="/support">Support</a>
+        <div class="flex justify-between w-full">
+            <div class="flex justify-start ">
+                <a class="text-xl no-underline text-orange-200 hover:text-orange-500" href="/">Startpage</a>
+            </div>
+            <div class="flex justify-end">
+                <a class="text-xl no-underline text-orange-200 hover:text-orange-500" href="/support">Support</a>
+            </div>
         </div>
     </div>
 </template>
     <script>
         export default ({
+            props: {
+                    user_id: String
+            },
+
             data() {
                 return {
                     UserData: [],
                     message: '',
+                    bool_message: false,
                     delWarn: false,
                     deleteId: 0,
                     loadId: 0,
@@ -98,13 +112,14 @@
                     stdImg: "/images/satan.gif",
                     atomicGif: "/images/atomic2.webp",
                     gifEnabled: false,
-                    var_crit: 1
+                    var_crit: 1,
                 }
             },
 
             mounted() {
-                this.loadAll();
-                this.init();
+                this.UserData.user_id = this.user_id;
+                this.init(this.UserData.user_id);
+                this.loadAllById(this.UserData.user_id);
             },
 
 
@@ -187,9 +202,9 @@
                         //
                     } else {
                         this.UserData.upgLvl++;
-                        this.UserData.atkDmg = this.UserData.atkDmg + (this.UserData.atkDmg * 0.02);
+                        this.UserData.atkDmg = this.UserData.atkDmg + (this.UserData.atkDmg * 0.005);
                         this.UserData.money = this.UserData.money - this.UserData.upgCosts;
-                        this.UserData.upgCosts = this.UserData.upgCosts + (this.UserData.upgCosts * 0.02);
+                        this.UserData.upgCosts = this.UserData.upgCosts + (this.UserData.upgCosts * 0.005);
 
                         this.UserData.upgCosts = Math.round(this.UserData.upgCosts * 1000) / 1000;
                         this.UserData.atkDmg = Math.round(this.UserData.atkDmg * 1000) / 1000;
@@ -217,12 +232,14 @@
                     }
                 },
 
-                init() {
-                    axios.get('/api/clickers/init')
+                init(id) {
+                    axios.get('/api/clickers/init/'+ id)
                         .then(response => {
-                            this.UserData = response.data;
                             if (response.data === '') {
-                                this.newGame();
+                                this.UserData.user_id = id;
+                                this.newGame(this.UserData.user_id);
+                            } else {
+                                this.UserData = response.data;
                             }
                             if (this.UserData.hero1DpsEnabled === true) {
                                 this.dps();
@@ -233,12 +250,20 @@
                         })
                 },
 
-                newGame() {
-
-                    axios.post('/api/clickers/create', this.UserData)
+                newGame(id) {
+                    axios.post('/api/clickers/create/'+id, this.UserData)
                         .then(response => {
                             this.UserData = response.data;
-                            this.loadAll();
+                            this.UserData.user_id = this.user_id;
+                            this.loadAllById(this.UserData.user_id);
+
+                            this.message = 'Created a new game with ID: ' + this.UserData.id + ' !';
+                            this.bool_message = true;
+                            let that = this;
+                            setTimeout(function () {
+                                that.bool_message = false;
+                                that.message = '';
+                            }, 3000);
                         })
                         .catch(err => {
                             console.log(err.response)
@@ -249,26 +274,34 @@
                     axios.post('/api/clickers/' + this.UserData.id, this.UserData)
                         .then(response => {
                             this.message = response.data;
+                            this.bool_message = true;
+                            let that = this;
+                            setTimeout(function () {
+                                that.bool_message = false;
+                                that.message = '';
+                            }, 3000);
                         })
                         .catch(err => {
                             console.log(err.response)
                         })
                 },
 
-                loadAll() {
-                    axios.get('/api/clickers')
+                loadAllById(id) {
+                    axios.get('/api/clickers/get/'+id)
                         .then(response => {
                             this.items = response.data;
+                            if (Array.isArray(this.items) && !this.items.length) {
+                                this.init(id);
+                            }
                         })
                         .catch(err => {
-                            console.log(err.response)
-                    })
+                            console.log(err)
+                        })
                 },
 
                 load(id) {
                     axios.get('/api/clickers/' + id)
                         .then(response => {
-                            this.UserId = response.data.id;
                             this.UserData = response.data;
                             if (this.UserData.hero1DpsEnabled === true) {
                                 this.message = '';
@@ -289,8 +322,14 @@
                     } else {
                         axios.post('/api/clickers/delete/' + id)
                             .then(response => {
-                                this.message = response.data;
-                                this.loadAll();
+                                this.message = 'Deleted Game '+ id + ' successfully';
+                                this.bool_message = true;
+                                let that = this;
+                                setTimeout(function () {
+                                    that.bool_message = false;
+                                    that.message = '';
+                                }, 3000);
+                                this.loadAllById(this.UserData.user_id);
                             })
                             .catch(err => {
                                 console.log(err.response)

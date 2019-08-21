@@ -24,6 +24,7 @@ Vue.component('clickers', require('./components/Clickers.vue').default);
 Vue.component('startpage', require('./components/startpage.vue').default);
 Vue.component('register', require('./components/register.vue').default);
 Vue.component('login', require('./components/login.vue').default);
+Vue.component('support', require('./components/support.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

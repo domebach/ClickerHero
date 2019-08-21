@@ -16,10 +16,10 @@ class CreateClickersTable extends Migration
         Schema::create('clickers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->default(1);
-            $table->float('currentHP')->default(10);
-            $table->text('currentHPShown')->default(10);
-            $table->float('maxHP')->default(10);
-            $table->text('maxHPShown')->default(10);
+            $table->float('currentHP')->default(100);
+            $table->text('currentHPShown')->default(100);
+            $table->float('maxHP')->default(100);
+            $table->text('maxHPShown')->default(100);
             $table->float('atkDmg')->default(1);
             $table->float('upgLvl')->default(0);
             $table->float('level')->default(1);
