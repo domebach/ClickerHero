@@ -88,14 +88,7 @@
         methods: {
 
             onSubmit() {
-                // let dataForm = new FormData();
-                // dataForm.append('name', this.form.name);
-                // dataForm.append('password', this.form.pw);
-                // dataForm.append('email', this.form.email);
-                // dataForm.append('region', this.form.region);
-                //
-                // console.log(this.form.name);
-                if (this.form.region != '-----') {
+                if (this.form.region !== '-----') {
                     axios.post('/register', {
                             name: this.form.name,
                             password: this.form.pw,
@@ -106,7 +99,7 @@
                             if (response) {
                                 let id = response.data;
                                 console.log(id);
-                                window.location.href = '/game/'+id;
+                                window.location.href = '/startpage/'+id;
                             } else {
                                 this.bool_message = true;
                                 this.message = 'Your given data are incorrect.';

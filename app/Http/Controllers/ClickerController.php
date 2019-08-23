@@ -12,7 +12,9 @@ class ClickerController extends Controller
 {
     public function index($id)
     {
-        return view('index',compact('id'));
+        $logged_in = User::find($id)->logged_in;
+
+        return view('game.index',compact('id'), compact('logged_in'));
     }
 
     public function create($id)
@@ -42,7 +44,7 @@ class ClickerController extends Controller
     public function getAllById($id)
     {
 
-        return response()->json(Clicker::select('id')->where('user_id', $id)->get()->pluck('id'));
+        return response()->json( Clicker::select('id')->where('user_id', $id)->get()->pluck('id') );
 
 
     }
@@ -52,7 +54,7 @@ class ClickerController extends Controller
         $clicker = Clicker::where('user_id', $id)->latest('updated_at')->first();
 
         if ($clicker) {
-            return response()->json($clicker);
+            return response()->json( $clicker );
         }
 
         return response()->json('');
@@ -64,9 +66,5 @@ class ClickerController extends Controller
         Clicker::findOrFail($id)->delete();
 
         return response()->json('Successfully deleted');
-    }
-
-    public function support() {
-        return view('support');
     }
 }

@@ -43,16 +43,22 @@
         </div>
 
         <div class="flex justify-center items-center filler">
-            <a class="px-5 hover:text-orange-400 hover:underline" href="/">Impressum</a>
-            <a class="px-5 hover:text-orange-400 hover:underline" href="/">Inhalt</a>
-            <a class="px-5 hover:text-orange-400 hover:underline" href="/">Datenschutz</a>
-            <a class="px-5 hover:text-orange-400 hover:underline" href="/support">Support</a>
+            <a class="px-5 hover:text-orange-400 hover:underline" :href="'/startpage/' + user_id">Imprint</a>
+            <a class="px-5 hover:text-orange-400 hover:underline" :href="'/startpage/' + user_id">Content</a>
+            <a class="px-5 hover:text-orange-400 hover:underline" :href="'/startpage/' + user_id">Data protection</a>
+            <a class="px-5 hover:text-orange-400 hover:underline" v-show="logged_in" :href="'/support/' + user_id">Support</a>
+
         </div>
     </div>
 </template>
 
 <script>
     export default  ({
+        props: {
+            user_id: String,
+            logged_in: Boolean
+        },
+
         data() {
             return {}
         },

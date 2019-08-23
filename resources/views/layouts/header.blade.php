@@ -26,8 +26,7 @@
         </div>
 
         <div class="w-1/3 flex justify-end">
-            <a class="btnReg text-xl hover:text-white hover:bg-blue-700 hover:no-underline my-3" href="/register">Register for free</a>
-            <a class="btnLog text-xl hover:text-white hover:bg-blue-700 hover:no-underline my-3" href="/login">Login</a>
+            @yield('header')
         </div>
     </div>
 

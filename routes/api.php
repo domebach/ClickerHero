@@ -16,15 +16,22 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/clickers', function (Request $request) {
     return $request->user();
 });
-    Route::get('clickers/get/{id}', 'ClickerController@getAllById');
 
-    Route::post('clickers/create/{id}', 'ClickerController@create');
+Route::get('clickers/init/{id}', 'ClickerController@init');
+Route::post('clickers/create/{id}', 'ClickerController@create');
+Route::post('clickers/{id}', 'ClickerController@update');
+Route::post('clickers/delete/{id}', 'ClickerController@delete');
 
-    Route::get('clickers/init/{id}', 'ClickerController@init');
+Route::get('clickers/{id}', 'ClickerController@get');
+Route::get('clickers/get/{id}', 'ClickerController@getAllById');
 
-    Route::post('clickers/{id}', 'ClickerController@update');
 
-    Route::get('clickers/{id}', 'ClickerController@get');
+Route::get('tickets/{id}', 'TicketController@index')->name('tickets');
+Route::post('tickets/{id}', 'TicketController@store');
+Route::get('tickets/list/{id}', 'TicketController@getAll')->name('ticketList');
+Route::get('ticket/view/{id}', 'TicketController@show')->name('ticketView');
+Route::get('ticket/get/{id}', 'TicketController@get');
+Route::get('tickets/update/{id}', 'TicketController@update');
+Route::post('tickets/delete/{id}', 'TicketController@delete');
 
-    Route::post('clickers/delete/{id}', 'ClickerController@delete');
 

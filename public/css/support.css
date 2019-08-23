@@ -39,7 +39,7 @@
 
 .bg-base {
     background-image: url("/images/support-bg.jpg");
-    background-size: cover;
+    background-size: 100% 110%;
 }
 
 .subtitle {
@@ -57,6 +57,13 @@
 
 .faq {
     background-color: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 0 10px 0 25px;
+    margin: -3px 0 0 4px;
+}
+
+.tickets {
+    background-color: rgba(255,255,255,0.4);
     border-radius: 10px;
     padding: 0 10px 0 25px;
     margin: -3px 0 0 4px;
@@ -155,3 +162,10 @@ ul {
     border-top: solid #702900 5px;
 }
 
+.tableHead {
+    border-bottom: solid lightgray 3px;
+}
+
+.tableBody {
+    border-bottom: dashed lightgray 1px;
+}

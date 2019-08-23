@@ -71,7 +71,7 @@
                         this.bool_message = true;
                     } else {
                         let id = response.data;
-                        window.location.href = '/game/'+id;
+                        window.location.href = '/startpage/'+id;
                     }
                 }).catch(error => {
                     console.log(error);

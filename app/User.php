@@ -11,10 +11,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    private $username;
-    private $password;
-    protected $rememberTokenName = 'remember_token';
-
     protected $fillable = [
         'name', 'email', 'password', 'region', 'api_token'
     ];

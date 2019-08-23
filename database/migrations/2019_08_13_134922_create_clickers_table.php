@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateClickersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('clickers', function (Blueprint $table) {
@@ -21,6 +16,7 @@ class CreateClickersTable extends Migration
             $table->float('maxHP')->default(100);
             $table->text('maxHPShown')->default(100);
             $table->float('atkDmg')->default(1);
+            $table->float('atkDmgShown')->default(1);
             $table->float('upgLvl')->default(0);
             $table->float('level')->default(1);
             $table->float('hero1Lvl')->default(0);
@@ -32,17 +28,18 @@ class CreateClickersTable extends Migration
             $table->text('upgHeroCostsShown')->default(50);
             $table->float('money')->default(0);
             $table->text('moneyShown')->default(0);
-            $table->float('critChance')->default(0.051);
+            $table->float('critChance')->default(0.05);
+            $table->float('upgCCCosts')->default(10);
+            $table->float('upgCCLvl')->default(1);
             $table->float('critDmg')->default(2);
+            $table->float('upgCDCosts')->default(10);
+            $table->float('upgCDLvl')->default(1);
+            $table->float('upgRUCosts')->default(1000);
+            $table->float('upgRULvl')->default(1);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('clickers');

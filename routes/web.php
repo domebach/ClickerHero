@@ -18,29 +18,24 @@
 Auth::routes();
 
 Route::get('/jq', function () {
-    return view('jQ');
+    return view('stuff.jQ');
 });
+Route::get('/', 'UserController@index');
 
-Route::group(['middleware' => ['web']], function () {
+Route::get('/startpage/{id}', 'UserController@sessionIndex');
 
-    Route::get('/register', 'UserController@register');
+Route::get('/register', 'UserController@register')->name('register');
+Route::post('/register', 'UserController@store');
 
-    Route::post('/register', 'UserController@store');
+Route::get('/login', 'UserController@login')->name('login');
+Route::post('/login', 'UserController@loginRequest');
+Route::get('/login/{id}', 'UserController@show');
 
-    Route::get('/login', 'UserController@login');
+Route::get('/logout/{id}', 'UserController@logout')->name('logout');
 
-    Route::post('/login', 'UserController@loginRequest');
+Route::get('/support/{id}', 'TicketController@support')->name('support');
 
-    Route::get('/login/{id}', 'UserController@show');
-
-    Route::resource('/', 'UserController');
-
-    Route::get('/support', 'ClickerController@support');
-
-    Route::get('/game/{id}', 'ClickerController@index');
-
-    Route::post('/game/{id}', 'ClickerController@getAllById');
-
-});
+Route::get('/game/{id}', 'ClickerController@index')->name('game');
+Route::post('/game/{id}', 'ClickerController@getAllById');
 
 Route::get('/home', 'HomeController@index')->name('home');

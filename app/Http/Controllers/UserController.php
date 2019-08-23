@@ -14,9 +14,16 @@ class UserController extends Controller
         return view('startpage');
     }
 
+    public function sessionIndex($id)
+    {
+        $user = User::find($id);
+
+        return view('startpage', compact( 'user' ));
+    }
+
     public function register()
     {
-        return view('register');
+        return view('validation.register');
     }
 
     public function store(Request $request)
@@ -36,13 +43,25 @@ class UserController extends Controller
             'api_token' => Str::random(80)
         ]);
 
+        $user->logged_in = true;
+        $user->save();
 
-        return response()->json( $user->id);
+
+        return response()->json( $user->id );
     }
 
     public function login()
     {
-        return view('login');
+        return view('validation.login');
+    }
+
+    public function logout($id)
+    {
+        $user = User::find($id);
+        $user->logged_in = false;
+        $user->save();
+
+        return redirect('/');
     }
 
     public function loginRequest(Request $request)
@@ -57,6 +76,8 @@ class UserController extends Controller
 
         if ($user && strtolower($request->name) === $user->name && Hash::check($request->password, $user->password)) {
             $user_id = $user->id;
+            $user->logged_in = true;
+            $user->save();
             return response()->json( $user_id );
         }
 
@@ -65,9 +86,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $user = User::where('id', $id)->get();
-
-        return response()->json($user);
+        return response()->json( User::where('id', $id)->get() );
     }
 
     public function edit($id)

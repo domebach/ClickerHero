@@ -1,4 +1,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.0.4/math.js"></script>
+<script src="https://kit.fontawesome.com/7d929768ff.js"></script>
 
 <html lang="de-DE">
     <head>
@@ -26,17 +27,17 @@
             </div>
 
             <div class="w-1/3 flex justify-end">
-                <a class="btnReg text-xl hover:text-white hover:bg-blue-700 hover:no-underline" href="/">Logout</a>
+                <a class="btnReg text-xl hover:text-white hover:bg-blue-700 hover:no-underline" href="{{ route('logout', ['id' => $id]) }}">Logout</a>
             </div>
         </div>
 
         <div class="base-img">
             <div id="app" class="basement" >
-                <clickers user_id="{{ $id }}"></clickers>
+                <clickers user_id="{{ $id }}" logged_in="{{ $logged_in }}"></clickers>
             </div>
         </div>
 
         <script src="{{ mix('js/app.js') }}"></script>
 
-    </bodybg-gray-400>
+    </body>
 </html>
